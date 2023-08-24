@@ -1,26 +1,26 @@
 const rankHierarchy = {
-  bronze1: 1,
-  bronze2: 2,
-  bronze3: 3,
-  silver1: 4,
-  silver2: 5,
-  silver3: 6,
-  gold1: 7,
-  gold2: 8,
-  gold3: 9,
-  platinum1: 10,
-  platinum2: 11,
-  platinum3: 12,
-  diamond1: 13,
-  diamond2: 14,
-  diamond3: 15,
-  champion1: 16,
-  champion2: 17,
-  champion3: 18,
-  gc1: 19,
-  gc2: 20,
-  gc3: 21,
-  ssl: 22,
+  bronze1: { value: 1, image: "rocket-league/rank-icons/bronze-1.png" },
+  bronze2: { value: 2, image: "rocket-league/rank-icons/bronze-2.png" },
+  bronze3: { value: 3, image: "rocket-league/rank-icons/bronze-3.png" },
+  silver1: { value: 4, image: "rocket-league/rank-icons/silver-1.png" },
+  silver2: { value: 5, image: "rocket-league/rank-icons/silver-2.png" },
+  silver3: { value: 6, image: "rocket-league/rank-icons/silver-3.png" },
+  gold1: { value: 7, image: "rocket-league/rank-icons/gold-1.png" },
+  gold2: { value: 8, image: "rocket-league/rank-icons/gold-2.png" },
+  gold3: { value: 9, image: "rocket-league/rank-icons/gold-3.png" },
+  platinum1: { value: 10, image: "rocket-league/rank-icons/platinum-1.png" },
+  platinum2: { value: 11, image: "rocket-league/rank-icons/platinum-2.png" },
+  platinum3: { value: 12, image: "rocket-league/rank-icons/platinum-3.png" },
+  diamond1: { value: 13, image: "rocket-league/rank-icons/diamond-1.png" },
+  diamond2: { value: 14, image: "rocket-league/rank-icons/diamond-2.png" },
+  diamond3: { value: 15, image: "rocket-league/rank-icons/diamond-3.png" },
+  champion1: { value: 16, image: "rocket-league/rank-icons/champion-1.png" },
+  champion2: { value: 17, image: "rocket-league/rank-icons/champion-2.png" },
+  champion3: { value: 18, image: "rocket-league/rank-icons/champion-3.png" },
+  gc1: { value: 19, image: "rocket-league/rank-icons/grand-champion-1.png" },
+  gc2: { value: 20, image: "rocket-league/rank-icons/grand-champion-2.png" },
+  gc3: { value: 21, image: "rocket-league/rank-icons/grand-champion-3.png" },
+  ssl: { value: 22, image: "rocket-league/rank-icons/super-sonic-legend.png" },
 };
 
 const currentRankSelect = document.getElementById("current-rank");
@@ -31,6 +31,9 @@ const gamemodeSelect = document.getElementById("gamemode");
 const duoQueueCheckbox = document.getElementById("duo-queue");
 const streamingCheckbox = document.getElementById("streaming");
 const priorityCheckbox = document.getElementById("priority");
+
+const currentRankImageElement = document.getElementById("current-rank-image");
+const desiredRankImageElement = document.getElementById("desired-rank-image");
 
 const DUO_QUEUE_EXTRA = 0.4;
 const PRIORITY_EXTRA = 0.2;
@@ -79,14 +82,17 @@ function newGamemode() {
 
 function updateDesiredRankOptions() {
   const selectedOption = currentRankSelect.options[currentRankSelect.selectedIndex];
-  const selectedRankValue = rankHierarchy[selectedOption.value];
+  const selectedRankValue = rankHierarchy[selectedOption.value].value;
   const desiredOption = desiredRankSelect.options[desiredRankSelect.selectedIndex];
-  const desiredRankValue = rankHierarchy[desiredOption.value];
+  const desiredRankValue = rankHierarchy[desiredOption.value].value;
 
   desiredRankSelect.innerHTML = "";
 
+  // Update images with new ranks
+  currentRankImageElement.src = rankHierarchy[selectedOption.value].image;
+
   for (const option of desiredRankSelectOriginalOptions) {
-    const optionRankValue = rankHierarchy[option.value];
+    const optionRankValue = rankHierarchy[option.value].value;
 
     if (optionRankValue > selectedRankValue) {
       const newOption = document.createElement("option");
@@ -103,9 +109,12 @@ function updateDesiredRankOptions() {
     desiredSelectedOptionIndex = (desiredRankValue - 1) - selectedRankValue;
     desiredRankSelect.selectedIndex = desiredSelectedOptionIndex;
   }
-
-  console.log(selectedOption);
-  console.log(desiredRankSelect.options[desiredSelectedOptionIndex]);
+  else {
+    // Update image
+    console.log(desiredRankSelect.options[0]);
+    let newDesiredRankOption = desiredRankSelect.options[0];
+    desiredRankImageElement.src = rankHierarchy[newDesiredRankOption.value].image;
+  }
 
   basePrice = parseFloat(desiredRankSelect.options[desiredSelectedOptionIndex].getAttribute("data-add")) - parseFloat(selectedOption.getAttribute("data-add"));
 
@@ -115,6 +124,9 @@ function updateDesiredRankOptions() {
 function newDesiredRank() {
     const selectedOption = currentRankSelect.options[currentRankSelect.selectedIndex];
     const desiredOption = desiredRankSelect.options[desiredRankSelect.selectedIndex];
+
+    // Update image of new rank
+    desiredRankImageElement.src = rankHierarchy[desiredOption.value].image;
 
     basePrice = parseFloat(desiredOption.getAttribute("data-add")) - parseFloat(selectedOption.getAttribute("data-add"));
     updateFinalPrice();
@@ -165,3 +177,4 @@ const desiredRankSelectOriginalOptions = Array.from(desiredRankSelect.options);
 
 // Initial update when the page loads
 updateDesiredRankOptions();
+newDesiredRank();
