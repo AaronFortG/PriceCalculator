@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    Current rank:
+    <select class="boosting-wrap-base-select-menu" name="current-rank" id="current-rank">
+      <option value="bronze1" data-add="0">Bronze I</option>
+      <option value="bronze2" data-add="1">Bronze II</option>
+      <option value="bronze3" data-add="2">Bronze III</option>
+      <option value="silver1" data-add="4">Silver I</option>
+      <option value="silver2" data-add="6">Silver II</option>
+      <option value="silver3" data-add="8">Silver III</option>
+      <option value="gold1" data-add="11" selected>Gold I</option>
+      <option value="gold2" data-add="14">Gold II</option>
+      <option value="gold3" data-add="17">Gold III</option>
+      <option value="platinum1" data-add="21">Platinum I</option>
+      <option value="platinum2" data-add="25">Platinum II</option>
+      <option value="platinum3" data-add="29">Platinum III</option>
+      <option value="diamond1" data-add="34">Diamond I</option>
+      <option value="diamond2" data-add="39">Diamond II</option>
+      <option value="diamond3" data-add="44">Diamond III</option>
+      <option value="champion1" data-add="51">Champion I</option>
+      <option value="champion2" data-add="60">Champion II</option>
+      <option value="champion3" data-add="70">Champion III</option>
+      <option value="gc1" data-add="85">Grand Champion I</option>
+      <option value="gc2" data-add="105">Grand Champion II</option>
+      <option value="gc3" data-add="145">Grand Champion III</option>
+    </select>
+
+    Desired rank:
+    <select class="boosting-wrap-base-select-menu" name="desired-rank" id="desired-rank">
+      <option value="bronze2" data-add="1">Bronze II</option>
+      <option value="bronze3" data-add="2">Bronze III</option>
+      <option value="silver1" data-add="4">Silver I</option>
+      <option value="silver2" data-add="6">Silver II</option>
+      <option value="silver3" data-add="8">Silver III</option>
+      <option value="gold1" data-add="11">Gold I</option>
+      <option value="gold2" data-add="14">Gold II</option>
+      <option value="gold3" data-add="17">Gold III</option>
+      <option value="platinum1" data-add="21">Platinum I</option>
+      <option value="platinum2" data-add="25">Platinum II</option>
+      <option value="platinum3" data-add="29">Platinum III</option>
+      <option value="diamond1" data-add="34" selected>Diamond I</option>
+      <option value="diamond2" data-add="39">Diamond II</option>
+      <option value="diamond3" data-add="44">Diamond III</option>
+      <option value="champion1" data-add="51">Champion I</option>
+      <option value="champion2" data-add="60">Champion II</option>
+      <option value="champion3" data-add="70">Champion III</option>
+      <option value="gc1" data-add="85">Grand Champion I</option>
+      <option value="gc2" data-add="105">Grand Champion II</option>
+      <option value="gc3" data-add="145">Grand Champion III</option>
+      <option value="ssl" data-add="215">Supersonic Legend</option>
+    </select>
+
+    Select gamemode:
+    <select class="boosting-wrap-base-select-menu" name="gamemode" id="gamemode">
+      <option value="1v1" data-add="0">1v1 (Solo Duels)</option>
+      <option value="2v2" data-add="0">2v2 (Doubles)</option>
+      <option value="3v3" data-add="0.25">3v3 (Standard) (25%)</option>
+      <option value="rumble" data-add="0.2">Rumble (20%)</option>
+      <option value="hoops" data-add="0.2">Hoops (20%)</option>
+      <option value="dropshot" data-add="0.45">Dropshot (45%)</option>
+      <option value="snow day" data-add="0.6">Snow Day (60%)</option>
+    </select>
+
+    <ul>
+      <li><p>
+        <label for="duo-queue">Duo Queue (40%)</label>
+        <input type="checkbox" id="duo-queue" />
+      </p></li>
+
+      <li><p>
+        <label for="streaming">Streaming (15%)</label>
+        <input type="checkbox" id="streaming" />
+      </p></li>
+
+      <li><p>
+        <label for="priority">Priority Order (20%)</label>
+        <input type="checkbox" id="priority" />
+      </p></li>
+    </ul>
+
+    <p id="price-display">Price: <span id="final-price">0</span>€</p>
+
+    <script src="script.js"></script>
+  </body>
+</html>
