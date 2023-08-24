@@ -97,14 +97,18 @@ function updateDesiredRankOptions() {
     }
   }
 
-  let desiredSelectedOptionIndex = currentRankSelect.selectedIndex;
+  let desiredSelectedOptionIndex = 0;
   
   if (selectedRankValue < desiredRankValue) {
     desiredSelectedOptionIndex = (desiredRankValue - 1) - selectedRankValue;
     desiredRankSelect.selectedIndex = desiredSelectedOptionIndex;
   }
 
+  console.log(selectedOption);
+  console.log(desiredRankSelect.options[desiredSelectedOptionIndex]);
+
   basePrice = parseFloat(desiredRankSelect.options[desiredSelectedOptionIndex].getAttribute("data-add")) - parseFloat(selectedOption.getAttribute("data-add"));
+
   updateFinalPrice();
 }
 
